@@ -4,7 +4,7 @@ sap.ui.define([
 	],
 	function(UIComponent, Button) {
 		"use strict";
-		
+
 		return UIComponent.extend("sap.training.button.Component", {
 
 			metadata: {
