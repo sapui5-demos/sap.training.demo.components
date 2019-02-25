@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
+		<title>Demo Components</title>
+
+		<script id="sap-ui-bootstrap"
+			src="../../resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{"sap.training": "./"}'
+			data-sap-ui-async="true">
+		</script>
+		
+
+		<script>
+		
+			sap.ui.getCore().attachInit(function () {
+				
+				sap.ui.require(["sap/ui/core/ComponentContainer", "sap/ui/core/Component"], function(ComponentContainer, Component) {
+					
+					var oContainer = new ComponentContainer({
+						name: "sap.training.products",
+						manifest: true,
+						async: true
+					});
+					oContainer.placeAt("target");
+					
+					// Create the component asynchronously before creating the container
+					Component.create({
+						id: "butComp1",
+						name: "sap.training.button",
+						settings: {
+							text: "Hello World 1"
+						}
+					}).then(function (oComponent) {
+						var oContainer1 = new ComponentContainer({
+							component: oComponent
+						});
+						oContainer1.placeAt("target1");
+					});
+		
+					// Create the component asynchronously with "manifest first" mode before creating the container
+					Component.create({
+						id: "butComp2",
+						name: "sap.training.button",
+						manifest: true,
+						settings: {
+							text: "Hello World 2"
+						}
+					}).then(function (oComponent) {
+						var oContainer2 = new ComponentContainer({
+							component: oComponent
+						});
+						oContainer2.placeAt("target2");
+					});
+		
+					// Create the component asynchronously while creating the container
+					var oContainer3 = new ComponentContainer({
+						name: "sap.training.button",
+						async: true,
+						settings: {
+							id: "butComp3",
+							text: "Hello World 3"
+						}
+					});
+					oContainer3.placeAt("target3");
+					
+					// Create the component asynchronously with "manifest first" mode while creating the container
+					var oContainer4 = new ComponentContainer({
+						name: "sap.training.button",
+						manifest: true,
+						async: true,
+						settings: {
+							id: "butComp4",
+							text: "Hello World 4"
+						}
+					});
+					oContainer4.placeAt("target4");
+
+				});
+			});
+		</script>
+	</head>
+
+	<body class="sapUiBody">
+		<div id="target"></div>
+		<div id="target1"></div>
+		<div id="target2"></div>
+		<div id="target3"></div>
+		<div id="target4"></div>
+	</body>
+
+</html>

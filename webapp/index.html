@@ -12,43 +12,53 @@
 			data-sap-ui-libs="sap.m"
 			data-sap-ui-theme="sap_belize"
 			data-sap-ui-compatVersion="edge"
-			data-sap-ui-resourceroots='{"sap.training": ""}'>
+			data-sap-ui-resourceroots='{"sap.training": "./"}'
+			data-sap-ui-async="true">
 		</script>
+		
 
 		<script>
-			// Create a Component
-            var oComp1 = sap.ui.getCore().createComponent({
-                            name: "sap.training.button",
-                            id: "Comp1", 
-                            settings: {text: "Hello World"}
-                        });
-            // Create a Component Container 
-            var oCompCont1 = new sap.ui.core.ComponentContainer("CompCont1", {
-                                   component: oComp1
-                                 });
-            // place the Container with the Component inside into an UI Area 
-            oCompCont1.placeAt("target1");
-
-
-            // You can also create a Component and Container at once
-            // In this example the Container will create a new Component according to the name
-            var oCompCont2 = new sap.ui.core.ComponentContainer("CompCont2", {
-                                    name: "sap.training.button",
-                                    settings: {text: "Hello World again"}
-                                 });
-            oCompCont2.placeAt("target2");
 		
-			// Products Component
-			var oCompCont3 = new sap.ui.core.ComponentContainer({
-									name: "sap.training.products"
-								});
-			oCompCont3.placeAt("target3");
-			
-			// Dialog Component
-			var oCompCont4 = new sap.ui.core.ComponentContainer({
-									name: "sap.training.dialog"
-								});
-			oCompCont4.placeAt("target4");
+			sap.ui.getCore().attachInit(function () {
+				
+				sap.ui.require(["sap/ui/core/ComponentContainer"], function(ComponentContainer) {
+				
+					// Create a Component
+		            var oComp1 = sap.ui.getCore().createComponent({
+		                            name: "sap.training.button",
+		                            id: "Comp1", 
+		                            settings: {text: "Hello World"}
+		                        });
+		            // Create a Component Container 
+		            var oCompCont1 = new ComponentContainer("CompCont1", {
+		                                   component: oComp1
+		                                 });
+		            // place the Container with the Component inside into an UI Area 
+		            oCompCont1.placeAt("target1");
+		
+		
+		            // You can also create a Component and Container at once
+		            // In this example the Container will create a new Component according to the name
+		            var oCompCont2 = new ComponentContainer("CompCont2", {
+		                                    name: "sap.training.button",
+		                                    settings: {text: "Hello World again"}
+		                                 });
+		            oCompCont2.placeAt("target2");
+				
+					// Products Component
+					var oCompCont3 = new ComponentContainer({
+											name: "sap.training.products"
+										});
+					oCompCont3.placeAt("target3");
+					
+					// Dialog Component
+					var oCompCont4 = new ComponentContainer({
+											name: "sap.training.dialog"
+										});
+					oCompCont4.placeAt("target4");
+				
+				});
+			});
 		</script>
 	</head>
 
